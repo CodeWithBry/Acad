@@ -1,0 +1,107 @@
+.skillsWrapper {
+    display: flex;
+    margin-top: 1rem;
+    width: 80%;
+    flex-direction: column;
+    align-items: center;
+    color: #EAAE2C;
+}
+
+.skillsWrapper .addSkillsWrapper{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.skillsWrapper .addSkillsWrapper > label {
+    border: none;
+    background-color: transparent;
+    color: #EAAE2C;
+    cursor: pointer;
+    transition: .5s ease;
+}
+
+.skillsWrapper .addSkillsWrapper > label:hover {
+    color: white;
+}
+
+.skillsWrapper .skillsBox {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: clamp(.1rem, 2vw, .5rem);
+    gap: clamp(.1rem, 2vw, .5rem);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.skillsWrapper .skillsBox > li {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.skillsWrapper .skillsBox > li > span {
+    width: 70%;
+    text-wrap: nowrap;
+    overflow-x: hidden;
+}
+.skillsWrapper .skillsBox > li > span > input {
+    width: 100%;
+    outline: none;
+    border: none;
+    color: #EAAE2C;
+    background-color: transparent;
+    font-size: clamp(.25rem, 2vw, .75rem);
+    font-weight: bold;
+}
+
+.skillsWrapper .skillsBox > li > button {
+    background-color: transparent;
+    border: none;
+    text-wrap: nowrap;
+    overflow-x: hidden;
+    font-size: clamp(.1rem, 2vw, 1rem);
+}
+
+.skillsWrapper .skillsBox .hideInput {
+    display: none;
+}
+
+.skillsWrapper .skillsBox .showInput {
+    display: flex;
+    width: 100%;
+}
+
+.skillsWrapper .skillsBox .showInput input{
+    width: 100%;
+    font-size: clamp(.25rem, 2vw, .75rem);
+    outline: none;
+    border: none;
+    padding-right: .2rem;
+    border-bottom: .2rem solid #EAAE2C;
+    background-color: transparent;
+    color: #EAAE2C;
+}
+
+.skillsWrapper .skillsBox .showInput > button {
+    font-size: clamp(.15rem, 2vw, .75rem);
+    padding: clamp(0rem, 2vw, .25rem) clamp(.15rem, 2vw, .55rem);
+    background-color: transparent;
+    border: none;
+    background-color: #EAAE2C;
+    border-radius: .5rem;
+    color: white;
+}
+
+.skillsWrapper .skillsBox .showInput > button:hover {
+    background-color: white;
+    color: #EAAE2C;
+}
+
+@media (max-width: 600px) and (max-height: 800px){
+    .skillsWrapper .skillsBox > li > span > input {
+        font-size: clamp(.75rem, 2vw, 1.5rem);
+    }
+}
