@@ -236,6 +236,8 @@ const Folders = () => {
             setFoldersCache([...folders, ...files])
             if(folders && files) setOpenedFolder([...folders, ...files])
         }
+
+        console.log(filesAndFolders)
     }, [folderPath, filesAndFolders])
 
 

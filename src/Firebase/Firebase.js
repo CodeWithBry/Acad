@@ -1,8 +1,9 @@
 import { deleteApp, initializeApp } from "firebase/app"
 import {getDatabase} from "firebase/database"
-import {getAuth} from "firebase/auth"
+import {getAuth, ProviderId} from "firebase/auth"
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
+import { FacebookAuthProvider, GithubAuthProvider } from "firebase/auth";
 
 const firebaseConfig_1 = {
     apiKey: import.meta.env.VITE_REACT_APP_FIREBASE_API_KEY,
@@ -31,6 +32,8 @@ const firebaseConfig_2 = {
 export const firebase_1 = initializeApp(firebaseConfig_1, "FIRST_APP")
 export const db = getFirestore(firebase_1)
 export const auth = getAuth(firebase_1)
+export const FBProvider = new FacebookAuthProvider()
+export const GithubProvider = new GithubAuthProvider()
 
 export const firebase_2 = initializeApp(firebaseConfig_2, "SECOND_APP")
 export const cloudDB = getStorage(firebase_2)

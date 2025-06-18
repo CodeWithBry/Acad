@@ -157,6 +157,10 @@
         width: 90%;
         margin-right: 0;
     }
+
+    .reportBugsWrapper .top > h3 {
+        font-size: clamp(1rem, 5vw, 1.5rem);
+    }
 }
 
 @media (max-width: 700px) and (max-height: 400px) {
