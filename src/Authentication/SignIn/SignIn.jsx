@@ -134,7 +134,7 @@ export default function SignIn() {
             // IdP data available using getAdditionalUserInfo(result)
             // ...
         }).catch((error) => {
-            console.log(error)
+            alert(error)
             setLoading(false)
         });
 
