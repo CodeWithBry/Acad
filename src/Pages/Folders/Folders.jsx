@@ -216,7 +216,6 @@ const Folders = () => {
 
     useEffect(() => {
         if (folderPath != "") {
-            console.log(filesAndFolders)
             let objects = []
             let files = []
             let folders = []
@@ -237,12 +236,11 @@ const Folders = () => {
             if(folders && files) setOpenedFolder([...folders, ...files])
         }
 
-        console.log(filesAndFolders)
     }, [folderPath, filesAndFolders])
 
 
     useEffect(() => {
-        if (foldersCache?.length == 0 && user) {
+        if (foldersCache?.length == 0 && user && filesAndFolders?.length == 0) {
             const getFromFireStore = async (uid) => {
                 setLoading(true)
                 try {
