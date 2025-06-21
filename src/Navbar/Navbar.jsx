@@ -32,7 +32,7 @@ const NavBar = () => {
         <>
             <div className={s.navBarWrapper}>
                 <div className={s.left}>
-                    <img src="./web-icon.png" />
+                    <img src="./web-icon.svg" />
                     <h1 className={s.title}>
                         Acad
                     </h1>
