@@ -7,15 +7,15 @@ import Button from '../Components/Button'
 
 const NavBar = () => {
     const navigation = useNavigate()
-    const { pages, setPages, 
-            user, setPrevPage, 
-            setHideSideBar, hideSideBar,
-            setIsSigningOut, changes,
-            setSaveChanges, prevPage } = useContext(context)
+    const { pages, setPages,
+        user, setPrevPage,
+        setHideSideBar, hideSideBar,
+        setIsSigningOut, changes,
+        setSaveChanges, prevPage } = useContext(context)
     function changeTab(i, path) {
-        
 
-        if(changes && pages[1].ind) {
+
+        if (changes && pages[1].ind) {
             setSaveChanges(true)
         } else {
             navigation(path)
@@ -25,10 +25,10 @@ const NavBar = () => {
                     { ...tab, ind: false }
             ))
         }
-        
+
     }
 
-     return (
+    return (
         <>
             <div className={s.navBarWrapper}>
                 <div className={s.left}>
@@ -45,7 +45,7 @@ const NavBar = () => {
                                     <li
                                         key={tab.name}
                                         className={tab.ind ? `${s.ind} ${s.Links}` : `${s.notInd} ${s.Links}`}
-                                        onClick={() => {changeTab(i, tab.path), setPrevPage(tab.path)}}
+                                        onClick={() => { changeTab(i, tab.path), setPrevPage(tab.path) }}
                                     >
                                         <span className={s.content}>
                                             {tab.icon}
@@ -60,25 +60,25 @@ const NavBar = () => {
                 </div>
                 {
                     user?.uid ?
-                    <div className={s.right}>
-                        <Link to={"/Dashboard"} className={s.Links} ><button className={s.authButts}>Account</button></Link>
-                        <button className={`${s.authButts} ${s.signOut}`} onClick={()=>{setIsSigningOut(true)}} >Log Out</button>
-                        <button className={s.HamburgerButt} onClick={()=>{setHideSideBar(false)}}><i className="fa fa-list-ul"></i></button>
-                    </div>  : 
-                    <div className={s.right}>
-                        <Link to={"/SignIn"} className={s.Links}>
-                            <button className={s.authButts} >Sign In</button>
-                        </Link>
-                        <Link to={"/SignUp"} className={s.Links}>
-                            <button className={`${s.authButts} ${s.signUp}`} >Sign Up</button>
-                        </Link>
-                        
-                        <button className={s.HamburgerButt} onClick={()=>{setHideSideBar(false)}}><i className="fa fa-list-ul"></i></button>
-                    </div>
+                        <div className={s.right}>
+                            <Link to={"/Dashboard"} className={s.Links} ><button className={s.authButts}>Account</button></Link>
+                            <button className={`${s.authButts} ${s.signOut}`} onClick={() => { setIsSigningOut(true) }} >Log Out</button>
+                            <button className={s.HamburgerButt} onClick={() => { setHideSideBar(false) }}><i className="fa fa-list-ul"></i></button>
+                        </div> :
+                        <div className={s.right}>
+                            <Link to={"/SignIn"} className={s.Links}>
+                                <button className={s.authButts} >Sign In</button>
+                            </Link>
+                            <Link to={"/SignUp"} className={s.Links}>
+                                <button className={`${s.authButts} ${s.signUp}`} >Sign Up</button>
+                            </Link>
+
+                            <button className={s.HamburgerButt} onClick={() => { setHideSideBar(false) }}><i className="fa fa-list-ul"></i></button>
+                        </div>
                 }
             </div>
 
-            <div className={hideSideBar == false ? s.sidebar : s.hideSideBar}>
+            <div className={hideSideBar == false ? s.sidebar : s.hideSideBar} onClick={() => { setHideSideBar(true) }}>
                 <ul className={hideSideBar == false ? s.NavLinks : s.hideNavLinks}>
                     <Button className={s.HamburgerButt} func={() => { !hideSideBar ? setHideSideBar(true) : setHideSideBar(false) }} content={(<i className="fa fa-list-ul" ></i>)}></Button>
                     {

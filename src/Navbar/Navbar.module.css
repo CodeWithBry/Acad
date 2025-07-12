@@ -298,6 +298,7 @@ a {
         text-decoration: none;
         background-color: #F5AE6F;
         transition: .5s ease-out;
+        cursor: pointer;
     }
 
     .sidebar>ul>.Links:hover {

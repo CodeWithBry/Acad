@@ -110,7 +110,7 @@ const Tasks = () => {
         tasks: arrayUnion(newTask), // Directly add the newTask
       });
       setWriteTaskPrompt(false);
-      //  Update state with the new task.  Don't rely on docSnap.Tasks, which might be outdated.
+      handleMarking([], ...dataTask)
       setTasks([...dataTask]);  //Update from local state after successful write
 
     } catch (error) {
@@ -152,7 +152,7 @@ const Tasks = () => {
     setSelectedTasks(data == null ? [] : [...data])
   }
 
-  function handleMarking(filtData, upData, prevData) {
+  function handleMarking(filtData, upData) {
     const locStor = JSON.parse(localStorage.getItem("Changes")) != null ?
       JSON.parse(localStorage.getItem("Changes")) : []
     if (locStor.length == 0) {
@@ -190,7 +190,6 @@ const Tasks = () => {
     } else {
       setSearching(true)
       setFilteredTasks(tasks.filter((task) => task.task.toLowerCase().includes(searchValue.current.value.toLowerCase())))
-      console.log(tasks.filter((task) => task.task.toLowerCase().includes(searchValue.current.value.toLowerCase())))
       setSorting(false)
     }
   }
@@ -256,7 +255,6 @@ const Tasks = () => {
 
   useEffect(() => {
     if (changes != null) {
-      console.log(changes[changes.length - 1])
       setTasks([...changes[changes.length - 1]])
     } else if (user?.uid && tasksCache?.length == 0) {
       setShowMakeUserSignIn(false)

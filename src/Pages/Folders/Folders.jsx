@@ -11,7 +11,7 @@ import Button from "../../Components/Button"
 export const foldersContext = createContext()
 
 const Folders = () => {
-    const { user, setLoading, foldersCache, setFoldersCache, setShowMakeUserSignIn } = useContext(context)
+    const { user, setLoading, foldersCache, setShowMakeUserSignIn } = useContext(context)
 
     const { setPages, imageContent, setImageContent } = useContext(context)
     const folderInputRef = useRef(null)
@@ -201,8 +201,6 @@ const Folders = () => {
 
     const saveToDatabase = async (data) => {
         const docRef = doc(db, "Users", user?.uid)
-        console.log(data)
-        if (data) setFoldersCache([...data])
         try {
             await updateDoc(docRef, {
                 folders: data ? data : filesAndFolders
@@ -232,7 +230,6 @@ const Folders = () => {
                     files.push(objects[i])
             }
 
-            setFoldersCache([...folders, ...files])
             if(folders && files) setOpenedFolder([...folders, ...files])
         }
 
@@ -249,7 +246,6 @@ const Folders = () => {
                     const dataFolders = getFolders.data()?.folders
                     if (dataFolders.length != 0) {
                         setFilesAndFolders([...dataFolders])
-                        setFoldersCache([...dataFolders])
                     }
                     setLoading(false)
                 } catch (error) {
@@ -261,7 +257,7 @@ const Folders = () => {
 
             if (user?.uid) getFromFireStore(user.uid)
         }
-    }, [foldersCache, user])
+    }, [user])
 
 
     useEffect(() => {

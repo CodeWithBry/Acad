@@ -43,9 +43,17 @@ const Dashboard = () => {
 
 
     const [skills, setSkills] = useState([])
-    const [contacts, setContacts] = useState([])
+    const [contacts, setContacts] = useState([
+        {
+            content: "0915-056-2345",
+            icon: "phone",
+        },
+        {
+            content: "example@email.com",
+            icon: "email",
+        }
+    ])
     const [favSubjects, setFavSubjects] = useState([])
-    // accInformation?.personalInfo?.skills.map((skill)=>{return{...skill}})
 
 
     function addSkill() {
@@ -130,10 +138,12 @@ const Dashboard = () => {
             setUsingAs(userData?.usingAs)
             setPurpose(userData?.perInfo?.purpose)
             setDesc(userData?.description)
-            setContacts(userData?.contacts ? userData?.contacts : [])
-            setSkills(userData?.skills ? userData?.skills : [])
+            userData?.contects != null ?? setContacts(userData?.contacts)
+            setSkills(userData?.skills ?? userData?.skills)
         }
     }, [userData])
+
+
 
     return (
         <>

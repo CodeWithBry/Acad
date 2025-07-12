@@ -35,8 +35,9 @@ const TopOptions = () => {
               data[j].lastUpdate = { fullDate: new Date(), time: Date.now() }
 
               if (state != false) {
-                data[selectedTasks[i].index].type = state
-                changedData.push(data[selectedTasks[i].index])
+                // data[selectedTasks[i].index].type = state
+                console.log(data[selectedTasks[i].index])
+                // changedData.push(data[selectedTasks[i].index])
               } else {
                 if (data[j].style == "default" || data[j].style == null) {
                   data[j].style = {

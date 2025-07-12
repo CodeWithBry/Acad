@@ -3,16 +3,17 @@ import s from "../TasksContainer.module.css"
 import { tasksContainerContext } from '../TasksContainer'
 import Task from '../Task/Task'
 import { tasksContext } from '../../Tasks'
+import ComponentLoader from '../ComponentLoader/ComponentLoader'
 
 const MapTasks = () => {
-    const { sortOptions, tasksOnType, 
-            searching, filteredTasks } = useContext(tasksContext)
-    
-    const { sorting, type, selecting } = useContext(tasksContainerContext)
-    
-    const [sortedTasks, setSortedTasks] = useState([]) 
+    const { sortOptions, tasksOnType,
+        searching, filteredTasks } = useContext(tasksContext)
 
-    useEffect(()=>{
+    const { sorting, type, selecting } = useContext(tasksContainerContext)
+
+    const [sortedTasks, setSortedTasks] = useState([])
+
+    useEffect(() => {
         let data = searching ? filteredTasks : tasksOnType
         for (let i in sortOptions) {
             if (i == 0 && sortOptions[i].state == true) {
@@ -26,32 +27,36 @@ const MapTasks = () => {
             }
         }
         setSortedTasks([...data])
-    },[sortOptions, tasksOnType, filteredTasks])
+    }, [sortOptions, tasksOnType, filteredTasks])
+
+    if (tasksOnType?.length == 0 ) {
+        return <ComponentLoader/>
+    }
 
     if (searching && sorting) {
         return <div className={s.tasksContainer} key={"Task_Container"}>
-                    {sortedTasks.map((task, i) => {
-                        if (task.type === "pending" && type === "Pending") {
-                            return <Task task={task} i={i} key={task.id} selecting={selecting} chechTask={() => checkTask()} />
-                        } else if (task.type === "finished" && type === "Finished") {
-                            return <Task task={task} i={i} key={task.id} selecting={selecting} chechTask={() => checkTask()} />
-                        } else if (type === "All Tasks") {
-                            return <Task task={task} i={i} key={task.id} selecting={selecting} chechTask={() => checkTask()} />
-                        }
-                    })}
-                </div>
-    } else if(searching && !sorting) {
+            {sortedTasks.map((task, i) => {
+                if (task.type === "pending" && type === "Pending") {
+                    return <Task task={task} i={i} key={task.id} selecting={selecting} chechTask={() => checkTask()} />
+                } else if (task.type === "finished" && type === "Finished") {
+                    return <Task task={task} i={i} key={task.id} selecting={selecting} chechTask={() => checkTask()} />
+                } else if (type === "All Tasks") {
+                    return <Task task={task} i={i} key={task.id} selecting={selecting} chechTask={() => checkTask()} />
+                }
+            })}
+        </div>
+    } else if (searching && !sorting) {
         return <div className={s.tasksContainer} key={"Task_Container"}>
-                    {filteredTasks.map((task, i) => {
-                        if (task.type === "pending" && type === "Pending") {
-                            return <Task task={task} i={i} key={task.id} selecting={selecting} chechTask={() => checkTask()} />
-                        } else if (task.type === "finished" && type === "Finished") {
-                            return <Task task={task} i={i} key={task.id} selecting={selecting} chechTask={() => checkTask()} />
-                        } else if (type === "All Tasks") {
-                            return <Task task={task} i={i} key={task.id} selecting={selecting} chechTask={() => checkTask()} />
-                        }
-                    })}
-                </div>
+            {filteredTasks.map((task, i) => {
+                if (task.type === "pending" && type === "Pending") {
+                    return <Task task={task} i={i} key={task.id} selecting={selecting} chechTask={() => checkTask()} />
+                } else if (task.type === "finished" && type === "Finished") {
+                    return <Task task={task} i={i} key={task.id} selecting={selecting} chechTask={() => checkTask()} />
+                } else if (type === "All Tasks") {
+                    return <Task task={task} i={i} key={task.id} selecting={selecting} chechTask={() => checkTask()} />
+                }
+            })}
+        </div>
     } else if (sorting && !searching) {
         return (
             <div className={s.tasksContainer}>

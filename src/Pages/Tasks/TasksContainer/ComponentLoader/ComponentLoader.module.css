@@ -1,0 +1,56 @@
+.componentLoaderWrapper {
+    width: 97%;
+    height: 100%;
+    font-size: clamp(.87rem, 2vw, 3rem);
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    gap: .25rem;
+    align-items: center;
+    border: 1.5vw solid #f09c2e;
+    border-top: 0vw;
+    overflow-y: auto;
+    padding-bottom: .5rem;
+}
+
+.component {
+    width: 85%;
+    height: fit-content;
+    padding: 2rem 1rem;
+    display: flex;
+    gap: 1rem;
+    border-radius: 1rem;
+    align-items: center;
+    cursor: pointer;
+    transition: .15s ease-in;
+    text-wrap: nowrap;
+    background-color: #e1e2e3;
+    border: .2rem solid rgb(202, 201, 201);
+}
+
+.component1 {
+    opacity: .7;
+    animation: com1 1.6s forwards infinite;
+}
+
+.component2 {
+    opacity: .6;
+}
+
+.component3 {
+    opacity: .4;
+}
+
+.component4 {
+    opacity: .2;
+}
+
+.component5 {
+    opacity: 0;
+}
+
+@keyframes com1 {
+    to {
+        opacity: 1;
+    }
+}
