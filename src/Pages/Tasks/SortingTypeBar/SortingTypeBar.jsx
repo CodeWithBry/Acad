@@ -19,10 +19,8 @@ const SortingTypeBar = () => {
         { ...ea, ind: false }
     ))
 
-    console.log(type)
-
     let taskArray = []
-
+    console.log(tasks)
     if (type == "Pending" || type == "Finished") {
       for (let i in tasks) {
         if (tasks[i].type.toLowerCase() == type.toLowerCase()) {

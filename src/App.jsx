@@ -154,8 +154,6 @@ function App() {
   }
 
 
-
-
   return (
     <>
       <context.Provider value={contextVariables}>

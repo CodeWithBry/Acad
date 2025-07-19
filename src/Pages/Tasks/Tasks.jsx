@@ -59,6 +59,7 @@ const Tasks = () => {
   const [tasks, setTasks] = useState([])
   const [tasksOnType, setTasksOnType] = useState(tasks.length != 0 ? [...tasks] : [])
   const [filteredTasks, setFilteredTasks] = useState([])
+  const [initialData, setInitialData] = useState([])
   const [selectedTasks, setSelectedTasks] = useState([])
   const [openedTask, setOpenedTask] = useState({})
   const [sortingTypes, setSortingTypes] = useState([
@@ -110,7 +111,6 @@ const Tasks = () => {
         tasks: arrayUnion(newTask), // Directly add the newTask
       });
       setWriteTaskPrompt(false);
-      handleMarking([], ...dataTask)
       setTasks([...dataTask]);  //Update from local state after successful write
 
     } catch (error) {
@@ -156,11 +156,12 @@ const Tasks = () => {
     const locStor = JSON.parse(localStorage.getItem("Changes")) != null ?
       JSON.parse(localStorage.getItem("Changes")) : []
     if (locStor.length == 0) {
-      locStor.push(tasks)
+      locStor.push(tasksCache)
     }
     if (locStor.length >= 1) {
       locStor.push(upData)
     }
+    
     localStorage.setItem("Changes", JSON.stringify(locStor))
     setChanges([...locStor])
     setNumberOfChanges(locStor.length - 1)
@@ -255,7 +256,7 @@ const Tasks = () => {
 
   useEffect(() => {
     if (changes != null) {
-      setTasks([...changes[changes.length - 1]])
+      setTasks(changes[changes.length - 1])
     } else if (user?.uid && tasksCache?.length == 0) {
       setShowMakeUserSignIn(false)
 
@@ -265,8 +266,6 @@ const Tasks = () => {
           const data = await getDoc(docRef)
 
           let tasksData = data.data().tasks
-
-          console.log(tasksData)
 
           for (let i in tasksData) {
             tasksData[i].cName = [
@@ -343,6 +342,7 @@ const Tasks = () => {
     type, setType,
     sortOptions, setSortOptions,
     openedTask, setOpenedTask,
+    initialData, setInitialData,
 
     // Functions
     unselectAll, handleSelectedTasks,

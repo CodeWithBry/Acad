@@ -6,8 +6,8 @@ import { tasksContext } from "../Tasks"
 const BottomOptions = () => {
 
   const { handleSelectedTasks, selectedTasks,
-          unselectAll, tasks, searching,
-          setTasks, filteredTasks,
+          unselectAll, tasks,
+          searching, filteredTasks,
           setFilteredTasks, handleMarking,
           selecting, setSelecting,
           tasksOnType, setTasksOnType } = useContext(tasksContext)
@@ -70,7 +70,7 @@ const BottomOptions = () => {
     }
 
     handleMarking(filtTask, [...data])
-    handleSelectedTasks(null) //eliminates the id of tasks in the array called "selectedTasks"
+    handleSelectedTasks(null)
   }
 
   const Options = () => {
